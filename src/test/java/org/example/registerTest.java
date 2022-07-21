@@ -9,20 +9,9 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class registerTest
+public class registerTest extends SuperTest
 {
     //? in this test we are going to test the register functionality on the home page
-    private WebDriver driver;
-    private String visit = "https://www.demoblaze.com/";
-    @Before
-    public void loadingHomePage()
-    {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get(visit);
-    }
-
     @Test
     public void registerAnUser()
     {
@@ -35,11 +24,5 @@ public class registerTest
         else{
             fail("Error registering an user");
         }
-    }
-
-    @After
-    public void closingHomePage()
-    {
-        driver.quit();
     }
 }
