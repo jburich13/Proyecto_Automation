@@ -23,7 +23,7 @@ public abstract class SuperTest
         driver.get(visit);
     }
     @Test
-    public void registerAnUser()
+    public void principalTest()
     {
 
     }

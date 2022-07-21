@@ -13,7 +13,7 @@ public class registerTest extends SuperTest
 {
     //? in this test we are going to test the register functionality on the home page
     @Test
-    public void registerAnUser()
+    public void principalTest()
     {
         pages.HomePage homePage = new pages.HomePage(driver);
         helpers.AccountGenerator accountGenerator = new helpers.AccountGenerator();
