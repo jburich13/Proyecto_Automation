@@ -4,22 +4,17 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import Tests.BaseTest;
+import helpers.AccountGenerator;
 import org.junit.Test;
 
 public class registerTest extends BaseTest
 {
     //? in this test we are going to test the register functionality on the home page
     @Test
-    public void principalTest()
+    public void registerAnUser()
     {
         pages.HomePage homePage = new pages.HomePage(driver);
-        helpers.AccountGenerator accountGenerator = new helpers.AccountGenerator();
+        assertTrue( homePage.SignUpMethod(AccountGenerator.staticUser(), AccountGenerator.staticPass()) );
 
-        if (homePage.SignUpMethod(accountGenerator.userGenerator(), accountGenerator.passwordGenerator())){
-            assertTrue( true );
-        }
-        else{
-            fail("Error registering an user");
-        }
     }
 }

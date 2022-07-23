@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class HomePage {
+public class HomePage extends BasePage {
 
     private WebDriver driver;
     // Web Elements
@@ -38,7 +38,6 @@ public class HomePage {
             if ((WB_textBoxUser.isDisplayed())&&(WB_textBoxPassword.isDisplayed())) {
                 WB_textBoxUser.sendKeys(user);
                 WB_textBoxPassword.sendKeys(pass);
-                helpers.Timer.sleeper(1);
                 WB_buttonConfirmSignUp.click();
                 helpers.Timer.sleeper(1);
                 if (singUpCheck(driver.switchTo().alert().getText())) {
@@ -59,7 +58,6 @@ public class HomePage {
     }
 
     public boolean singUpCheck(String msg) {
-        helpers.Timer.sleeper(1);
         if (msg.equals("Sign up successful.")) {
             return true;
         }
