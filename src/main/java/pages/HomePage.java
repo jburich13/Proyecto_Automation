@@ -1,5 +1,6 @@
 package pages;
 
+import helpers.AlertManager;
 import helpers.Timer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -22,6 +23,9 @@ public class HomePage extends BasePage {
     private By textBoxPassword= By.id("sign-password");//*** Text box for password
     private By singUpButtonFinish = By.xpath("/html/body/div[2]/div/div/div[3]/button[2]");//*** sing up button to finish the process
 
+    // AlertManager
+    private AlertManager alertManager;
+
     // Constructor
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -33,6 +37,7 @@ public class HomePage extends BasePage {
 
     // Methods
     public String SignUpMethod(String user, String pass) {
+        alertManager = new AlertManager(driver);
         helpers.Timer.sleeper(1);
         if (WB_buttonSignUp.isDisplayed()) {
             WB_buttonSignUp.click();
@@ -42,7 +47,7 @@ public class HomePage extends BasePage {
                 WB_textBoxPassword.sendKeys(pass);
                 WB_buttonConfirmSignUp.click();
                 helpers.Timer.sleeper(1);
-                if (singUpCheck(driver.switchTo().alert().getText())) {
+                if (singUpCheck(alertManager.getAlertText())) {
                     return this.message;
                 } else {
                     return this.message;
@@ -65,7 +70,7 @@ public class HomePage extends BasePage {
         if (msg.equals("This user already exist.")) {
             //send a message
         }
-        driver.switchTo().alert().accept();
+        alertManager.acceptAlert();
         return false;
     }
 }
