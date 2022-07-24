@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 public class HomePage extends BasePage {
 
     private WebDriver driver;
+
+    private String message;// message to be returned by a method
     // Web Elements
     private WebElement WB_buttonSignUp;
     private WebElement WB_textBoxUser;
@@ -30,7 +32,7 @@ public class HomePage extends BasePage {
     }
 
     // Methods
-    public boolean SignUpMethod(String user, String pass) {
+    public String SignUpMethod(String user, String pass) {
         helpers.Timer.sleeper(1);
         if (WB_buttonSignUp.isDisplayed()) {
             WB_buttonSignUp.click();
@@ -41,29 +43,29 @@ public class HomePage extends BasePage {
                 WB_buttonConfirmSignUp.click();
                 helpers.Timer.sleeper(1);
                 if (singUpCheck(driver.switchTo().alert().getText())) {
-                    driver.switchTo().alert().accept();
-                    return true;
+                    return this.message;
                 } else {
-                    driver.switchTo().alert().accept();
-                    return false;
+                    return this.message;
                 }
             }else {
                 System.out.println("Text boxes are not displayed");
-                return false;
+                return this.message;
             }
         }else {
             System.out.println("Button is not displayed");
-            return false;
+            return this.message;
         }
     }
 
     public boolean singUpCheck(String msg) {
+        this.message = msg;
         if (msg.equals("Sign up successful.")) {
             return true;
         }
         if (msg.equals("This user already exist.")) {
             //send a message
         }
+        driver.switchTo().alert().accept();
         return false;
     }
 }

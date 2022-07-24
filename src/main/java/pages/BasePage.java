@@ -13,4 +13,7 @@ public abstract class BasePage {
     public void clickOnLink(By by) {
         driver.findElement(by).click();
     }
+    public helpers.HoverManager clickHovers() {
+        return new helpers.HoverManager(driver);
+    }
 }

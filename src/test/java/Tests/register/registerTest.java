@@ -1,11 +1,10 @@
 package Tests.register;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import Tests.BaseTest;
 import helpers.AccountGenerator;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class registerTest extends BaseTest
 {
@@ -14,7 +13,7 @@ public class registerTest extends BaseTest
     public void registerAnUser()
     {
         pages.HomePage homePage = new pages.HomePage(driver);
-        assertTrue( homePage.SignUpMethod(AccountGenerator.staticUser(), AccountGenerator.staticPass()) );
+        assertEquals("Sign up successful.", homePage.SignUpMethod(AccountGenerator.staticUser(), AccountGenerator.staticPass()));
 
     }
 }
